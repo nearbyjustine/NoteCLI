@@ -19,11 +19,20 @@ namespace NoteCLI
             // TODO: Add checking
             notes.Add(note);
         }
+        public Note ViewNote(int id)
+        {
+            return notes.Single(n => n.Id == id);
+        }
         public void RemoveNote(int id)
         {
             // TODO: Add try catch for when note does not exist.
-            notes.Remove(notes.Single( n => n.Id == id));
+            notes.Remove(this.ViewNote(id));
         }
-
+        public void EditNote(int id, string title, string content)
+        {
+            Note note = this.ViewNote(id);
+            note.Title = title;
+            note.Content = content;
+        }
     }
 }
